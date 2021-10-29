@@ -3,5 +3,7 @@ CREATE TABLE IF NOT EXISTS scans (
     start_time timestamp,
     runtime decimal,
     command varchar(255),
+    uphosts int,
+    downhosts int,
     PRIMARY KEY (scan_id)
 );
