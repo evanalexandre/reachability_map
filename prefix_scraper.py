@@ -1,5 +1,4 @@
 import netaddr
-import nmap
 import requests
 import config
 
