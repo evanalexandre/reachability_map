@@ -9,13 +9,27 @@ db = mysql.connector.connect(
     database=config.DB_NAME
 )
 
-def build_schema():
-    with open('schema.sql', 'r') as f:
+
+def execute_sql(script):
+    with open(script, 'r') as f:
         commands = f.read().split(';')
         print(commands)
         cursor = db.cursor()
         for command in commands:
             cursor.execute(command)
+
+
+def build_schema():
+    execute_sql('schema.sql')
+
+
+def drop_tables():
+    execute_sql('drop_tables.sql')
+
+
+def rebuild_schema():
+    drop_tables()
+    build_schema()
 
 
 def read_scans():
@@ -28,4 +42,5 @@ def read_scans():
 
 
 if __name__ == '__main__':
+    rebuild_schema()
     read_scans()
