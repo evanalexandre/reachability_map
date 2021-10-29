@@ -12,10 +12,10 @@ db = mysql.connector.connect(
 
 def execute_sql(script):
     with open(script, 'r') as f:
-        commands = f.read().split(';')
-        print(commands)
+        commands = f.read().split(';')[:-1]
         cursor = db.cursor()
         for command in commands:
+            print(command)
             cursor.execute(command)
 
 
@@ -42,5 +42,4 @@ def read_scans():
 
 
 if __name__ == '__main__':
-    rebuild_schema()
     read_scans()

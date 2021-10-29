@@ -1,2 +1,2 @@
-DROP TABLE hosts;
-DROP TABLE scans;
+DROP TABLE IF EXISTS hosts;
+DROP TABLE IF EXISTS scans;
