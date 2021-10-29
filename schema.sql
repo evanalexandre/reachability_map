@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS scans (
     command varchar(255),
     uphosts int,
     downhosts int,
+    source_ip varchar(255),
     PRIMARY KEY (scan_id)
 );
 

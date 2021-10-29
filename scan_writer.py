@@ -6,13 +6,14 @@ import scan_scraper
 def parse_ping_sweep(result):
     nmap = result['nmap']
     start_time = result['start_time']
+    source_ip = result['source_ip']
     runtime = nmap['scanstats']['elapsed']
     command = nmap['command_line']
     uphosts = nmap['scanstats']['uphosts']
     downhosts = nmap['scanstats']['downhosts']
     cursor = db_connect.db.cursor()
-    insert_frame = 'INSERT INTO scans (start_time, runtime, command, uphosts, downhosts) VALUES ("{}", "{}", "{}", "{}", "{}")'
-    insert = insert_frame.format(start_time, runtime, command, uphosts, downhosts)
+    insert_frame = 'INSERT INTO scans (start_time, runtime, command, uphosts, downhosts, source_ip) VALUES ("{}", "{}", "{}", "{}", "{}", "{}")'
+    insert = insert_frame.format(start_time, runtime, command, uphosts, downhosts, source_ip)
     print(insert)
     cursor.execute(insert)
     db_connect.db.commit()
