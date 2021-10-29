@@ -1,3 +1,4 @@
 netaddr
 python-nmap
 requests
+mysql-connector-python
