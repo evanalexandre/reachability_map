@@ -18,5 +18,14 @@ def build_schema():
             cursor.execute(command)
 
 
+def read_scans():
+    cursor = db.cursor()
+    select = 'SELECT * FROM scans'
+    cursor.execute(select)
+    result = cursor.fetchall()
+    for i in result:
+        print(i)
+
+
 if __name__ == '__main__':
-    build_schema()
+    read_scans()
