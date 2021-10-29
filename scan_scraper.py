@@ -6,7 +6,7 @@ def ping_sweep(network):
     scanner = nmap.PortScanner()
     arguments = '-sP'
     result = scanner.scan(hosts=network, arguments=arguments)
-    print(result)
+    return(result)
 
 
 if __name__ == '__main__':
