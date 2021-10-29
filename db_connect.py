@@ -11,9 +11,20 @@ db = mysql.connector.connect(
 
 def build_schema():
     with open('schema.sql', 'r') as f:
-        commands = f.read()
+        commands = f.read().split(';')
         print(commands)
+        cursor = db.cursor()
+        for command in commands:
+            db.execute(command)
         
+
+def show_tables():
+    cursor = db.cursor()
+    cursor.execute('SHOW TABLES')
+    for i in cursor:
+        print(i)
+
 
 if __name__ == '__main__':
     build_schema()
+    show_tables()
