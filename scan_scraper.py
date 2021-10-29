@@ -9,7 +9,6 @@ def ping_sweep(network):
     arguments = '-sP'
     result = scanner.scan(hosts=network, arguments=arguments)
     result['start_time'] = start_time
-    print(result)
     return(result)
 
 
