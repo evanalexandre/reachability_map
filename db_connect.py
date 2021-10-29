@@ -15,7 +15,7 @@ def build_schema():
         print(commands)
         cursor = db.cursor()
         for command in commands:
-            db.execute(command)
+            cursor.execute(command)
         
 
 def show_tables():
