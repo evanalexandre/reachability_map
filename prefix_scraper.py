@@ -18,3 +18,8 @@ def get_prefixes(asn):
     end = datetime.datetime.now()
     runtime = start - end
     return(prefix_strings)
+
+
+if __name__ == '__main__':
+    prefixes = get_prefixes(ASN)
+    print(prefixes)
