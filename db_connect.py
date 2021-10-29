@@ -9,9 +9,11 @@ db = mysql.connector.connect(
     database=config.DB_NAME
 )
 
+def build_schema():
+    with open('schema.sql', 'r') as f:
+        commands = f.read()
+        print(commands)
+        
 
 if __name__ == '__main__':
-    cursor = db.cursor()
-    cursor.execute('SHOW TABLES')
-    for i in cursor:
-        print(i)
+    build_schema()
