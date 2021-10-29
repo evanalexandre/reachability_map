@@ -16,15 +16,7 @@ def build_schema():
         cursor = db.cursor()
         for command in commands:
             cursor.execute(command)
-        
-
-def show_tables():
-    cursor = db.cursor()
-    cursor.execute('SHOW TABLES')
-    for i in cursor:
-        print(i)
 
 
 if __name__ == '__main__':
     build_schema()
-    show_tables()
