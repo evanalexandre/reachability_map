@@ -32,9 +32,9 @@ def rebuild_schema():
     build_schema()
 
 
-def read_scans():
+def select_all(table):
     cursor = db.cursor()
-    select = 'SELECT * FROM scans'
+    select = 'SELECT * FROM {}'.format(table)
     cursor.execute(select)
     result = cursor.fetchall()
     for i in result:
@@ -42,4 +42,5 @@ def read_scans():
 
 
 if __name__ == '__main__':
-    read_scans()
+    select_all('hosts')
+    select_all('scans')

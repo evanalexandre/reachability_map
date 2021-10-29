@@ -24,6 +24,7 @@ def parse_ping_sweep(result):
     insert_row(insert)
     select_frame = 'SELECT scan_id FROM scans WHERE start_time = "{}"'
     select = select_frame.format(start_time)
+    cursor = db_connect.db.cursor()
     cursor.execute(select)
     select_result = cursor.fetchone()
     scan_id = select_result[0]
