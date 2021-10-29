@@ -2,6 +2,9 @@ import netaddr
 import nmap
 import requests
 import datetime
+import config
+
+ASN = config.ASN
 
 
 def get_prefixes(asn):
