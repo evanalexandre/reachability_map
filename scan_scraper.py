@@ -8,6 +8,7 @@ def ping_sweep(network):
     scanner = nmap.PortScanner()
     arguments = '-sP'
     result = scanner.scan(hosts=network, arguments=arguments)
+    print(type(result))
     result['start_time'] = start_time
     return(result)
 
