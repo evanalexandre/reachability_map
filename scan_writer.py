@@ -10,7 +10,6 @@ def parse_ping_sweep(result):
     command = nmap['command_line']
     uphosts = nmap['scanstats']['uphosts']
     downhosts = nmap['scanstats']['downhosts']
-    print(start_time, runtime, command, uphosts, downhosts)
     cursor = db_connect.db.cursor()
     insert_frame = 'INSERT INTO scans (start_time, runtime, command, uphosts, downhosts) VALUES ("{}", "{}", "{}", "{}", "{}")'
     insert = insert_frame.format(start_time, runtime, command, uphosts, downhosts)
@@ -18,6 +17,13 @@ def parse_ping_sweep(result):
     cursor.execute(insert)
     db_connect.db.commit()
     print(cursor.rowcount, "record inserted.")
+    select_frame = 'SELECT scan_id FROM scans WHERE start_time = "{}"'
+    select = select_frame.format(start_time)
+    cursor.execute(select)
+    select_result = cursor.fetchone()
+    scan_id = select_result[0]
+    print(scan_id)
+
     
 
 
