@@ -1,2 +1,2 @@
 # reachability_map
-icmp reachability scrapper
+icmp reachability scraper
