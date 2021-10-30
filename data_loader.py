@@ -41,12 +41,13 @@ def parse_ping_sweep(result):
     nmap = result['nmap']
     start_time = result['start_time']
     source_ip = result['source_ip']
+    source_ip_id = insert_ip(source_ip)
     runtime = nmap['scanstats']['elapsed']
     command = nmap['command_line']
     uphosts = nmap['scanstats']['uphosts']
     downhosts = nmap['scanstats']['downhosts']
-    insert_frame = 'INSERT INTO scans (start_time, runtime, command, uphosts, downhosts, source_ip) VALUES ("{}", "{}", "{}", "{}", "{}", "{}")'
-    insert = insert_frame.format(start_time, runtime, command, uphosts, downhosts, source_ip)
+    insert_frame = 'INSERT INTO scans (start_time, runtime, command, uphosts, downhosts, source_ipv4_id) VALUES ("{}", "{}", "{}", "{}", "{}", "{}")'
+    insert = insert_frame.format(start_time, runtime, command, uphosts, downhosts, source_ip_id)
     insert_row(insert)
     select_frame = 'SELECT scan_id FROM scans WHERE start_time = "{}"'
     select = select_frame.format(start_time)
@@ -54,11 +55,12 @@ def parse_ping_sweep(result):
     scan_id = select_result[0]
     scan = result['scan']
     for ip in scan:
+        ip_id = insert_ip(ip)
         status = scan[ip]['status']['state']
         reason = scan[ip]['status']['reason']
         hostname = scan[ip]['hostnames'][0]['name']
-        insert_frame = 'INSERT INTO hosts (scan_id, ipv4_address, hostname, status, reason) VALUES ("{}", "{}", "{}", "{}", "{}")'
-        insert = insert_frame.format(scan_id, ip, hostname, status, reason)
+        insert_frame = 'INSERT INTO hosts (scan_id, ipv4_id, hostname, status, reason) VALUES ("{}", "{}", "{}", "{}", "{}")'
+        insert = insert_frame.format(scan_id, ip_id, hostname, status, reason)
         insert_row(insert)
 
 
