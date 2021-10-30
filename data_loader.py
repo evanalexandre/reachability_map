@@ -43,6 +43,7 @@ def parse_trace(result):
     source_ip = scan_scraper.get_external_ip()
     lines = result.split('\r\n')
     for line in lines:
+        print(line)
         items = line.split()
         if 'traceroute' in items:
             # parse first line
@@ -59,8 +60,6 @@ def parse_trace(result):
             latency2 = float(items[5])
             latency3 = float(items[7])
             print(hop_count, hop_name, hop_ip, latency1, latency2, latency3)
-    
-
 
 
 if __name__ == '__main__':
