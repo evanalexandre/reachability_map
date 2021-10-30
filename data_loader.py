@@ -12,6 +12,11 @@ def insert_row(command):
     print(cursor.rowcount, "record inserted.")
 
 
+def insert_ip(ip):
+    """Insert IP into table if it doesn't already exist. Returns IP ID"""
+
+
+
 def parse_ping_sweep(result):
     nmap = result['nmap']
     start_time = result['start_time']

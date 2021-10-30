@@ -27,3 +27,27 @@ CREATE TABLE IF NOT EXISTS hosts (
     FOREIGN KEY (scan_id) REFERENCES scans(scan_id),
     FOREIGN KEY (ipv4_id) REFERENCES ipv4_addresses(ipv4_id)
 );
+
+CREATE TABLE IF NOT EXISTS traces (
+    trace_id int NOT NULL AUTO_INCREMENT,
+    source_ipv4_id int,
+    destination varchar(255),
+    destination_ipv4_id int,
+    max_hops int,
+    packet_size int,
+    PRIMARY KEY (trace_id),
+    FOREIGN KEY (source_ipv4_id) REFERENCES ipv4_addresses(ipv4_id),
+    FOREIGN KEY (destination_ipv4_id) REFERENCES ipv4_addresses(ipv4_id)
+);
+
+CREATE TABLE IF NOT EXISTS hops (
+    hop_id int NOT NULL AUTO_INCREMENT,
+    trace_id int,
+    hop_count int,
+    hop_name varchar(255),
+    hop_ipv4_id int,
+    latency decimal,
+    PRIMARY KEY (hop_id),
+    FOREIGN KEY (trace_id) REFERENCES traces(trace_id),
+    FOREIGN KEY (hop_ipv4_id) REFERENCES ipv4_addresses(ipv4_id)
+)
