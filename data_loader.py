@@ -1,6 +1,7 @@
 import db_connect
 import prefix_scraper
 import scan_scraper
+import trace
 
 
 def insert_row(command):
@@ -38,11 +39,11 @@ def parse_ping_sweep(result):
         insert_row(insert)
 
 
+def parse_trace(result):
+    for line in result:
+        print(line)
+
+
 if __name__ == '__main__':
-    prefixes = prefix_scraper.get_prefixes(prefix_scraper.ASN)
-    for prefix in prefixes:
-        result = scan_scraper.ping_sweep(prefix)
-        parse_ping_sweep(result)
-        
-
-
+    result = trace.traceroute('8.8.8.8')
+    parse_trace(result)
