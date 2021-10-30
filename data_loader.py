@@ -85,5 +85,5 @@ def parse_trace(result):
 
 
 if __name__ == '__main__':
-    id = insert_ip('1.1.1.1')
+    id = insert_ip('8.8.8.8')
     print(id)
