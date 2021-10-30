@@ -27,7 +27,7 @@ def insert_ip(ip):
     select_result = select_one(select)
     # if IP doesn't exist yet, insert it and get the ID
     if select_result == None:
-        insert_frame = 'INSERT INTO ipv4_address (ipv4_address) VALUES "{}"'
+        insert_frame = 'INSERT INTO ipv4_addresses (ipv4_address) VALUES "{}"'
         insert = insert_frame.format(ip)
         insert_row(insert)
         select_result = select_one.result()
