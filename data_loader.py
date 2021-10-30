@@ -45,19 +45,20 @@ def parse_trace(result):
     for line in lines:
         print('Line: ', line)
         items = line.split()
-        if 'traceroute' in items:
-            # parse first line
-            destination = items[2]
-            dest_ip = items[3].strip('(),')
-            max_hops = items[4]
-            packet_size = items[7]
-            print(destination, dest_ip, max_hops, packet_size)
-        else:
-            hop_count = int(items[0])
-            hop_name = items[1]
-            hop_ip = items[2].strip('()')
-            latency = float(items[3])
-            print(hop_count, hop_name, hop_ip, latency)
+        if len(items) > 1:
+            if 'traceroute' in items:
+                # parse first line
+                destination = items[2]
+                dest_ip = items[3].strip('(),')
+                max_hops = items[4]
+                packet_size = items[7]
+                print(destination, dest_ip, max_hops, packet_size)
+            else:
+                hop_count = int(items[0])
+                hop_name = items[1]
+                hop_ip = items[2].strip('()')
+                latency = float(items[3])
+                print(hop_count, hop_name, hop_ip, latency)
 
 
 if __name__ == '__main__':
