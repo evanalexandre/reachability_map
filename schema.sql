@@ -50,4 +50,4 @@ CREATE TABLE IF NOT EXISTS hops (
     PRIMARY KEY (hop_id),
     FOREIGN KEY (trace_id) REFERENCES traces(trace_id),
     FOREIGN KEY (hop_ipv4_id) REFERENCES ipv4_addresses(ipv4_id)
-)
+);
