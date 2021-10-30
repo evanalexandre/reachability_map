@@ -56,10 +56,8 @@ def parse_trace(result):
             hop_count = int(items[0])
             hop_name = items[1]
             hop_ip = items[2].strip('()')
-            latency1 = float(items[3])
-            latency2 = float(items[5])
-            latency3 = float(items[7])
-            print(hop_count, hop_name, hop_ip, latency1, latency2, latency3)
+            latency = float(items[3])
+            print(hop_count, hop_name, hop_ip, latency)
 
 
 if __name__ == '__main__':

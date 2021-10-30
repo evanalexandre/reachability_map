@@ -2,7 +2,7 @@ import os
 
 
 def traceroute(destination):
-    command = 'traceroute ' + destination
+    command = 'traceroute -q ' + destination
     results = os.popen(command).read()
     return(results)
 
