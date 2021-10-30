@@ -31,7 +31,8 @@ def insert_ip(ip):
         insert = insert_frame.format(ip)
         insert_row(insert)
         select_result = select_one(select)
-        print(select_result)
+        ip_id = select_result[0]
+        return(ip_id)
 
 
 def parse_ping_sweep(result):
@@ -82,4 +83,5 @@ def parse_trace(result):
 
 
 if __name__ == '__main__':
-    insert_ip('1.1.1.1')
+    id = insert_ip('1.1.1.1')
+    print(id)
