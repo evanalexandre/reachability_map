@@ -40,10 +40,27 @@ def parse_ping_sweep(result):
 
 
 def parse_trace(result):
+    source_ip = scan_scraper.get_external_ip()
     lines = result.split('\r\n')
     for line in lines:
         items = line.split()
-        print(items)
+        if 'traceroute' in items:
+            # parse first line
+            destination = items[2]
+            dest_ip = items[3].strip('(),')
+            max_hops = items[4]
+            packet_size = items[7]
+            print(destination, dest_ip, max_hops, packet_size)
+        else:
+            hop_count = int(items[0])
+            hop_name = items[1]
+            hop_ip = items[2].strip('()')
+            latency1 = float(items[3])
+            latency2 = float(items[5])
+            latency3 = float(items[7])
+            print(hop_count, hop_name, hop_ip, latency1, latency2, latency3)
+    
+
 
 
 if __name__ == '__main__':
