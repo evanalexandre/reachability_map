@@ -18,7 +18,7 @@ def insert_row(command):
     cursor = db_connect.db.cursor()
     cursor.execute(command)
     db_connect.db.commit()
-    message = cursor.rowcount + "record inserted."
+    message = str(cursor.rowcount) + "record inserted."
     logging.info(message)
 
 
