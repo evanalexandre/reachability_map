@@ -66,6 +66,7 @@ def parse_ping_sweep(result):
 
 def parse_trace(result):
     source_ip = scan_scraper.get_external_ip()
+    source_ip_id = insert_ip(source_ip)
     lines = result.split('\n')
     for line in lines:
         print('Line: ', line)
@@ -75,13 +76,17 @@ def parse_trace(result):
                 # parse first line
                 destination = items[2]
                 dest_ip = items[3].strip('(),')
+                dest_ip_id = insert_ip(dest_ip)
                 max_hops = items[4]
                 packet_size = items[7]
-                print(destination, dest_ip, max_hops, packet_size)
+                insert_frame = 'INSERT INTO traces (source_ipv4_id, destination, destination_ipv4_id, max_hops, packet_size) VALUES ("{}", "{}", "{}", "{}", "{}")'
+                insert = insert_frame.format(source_ip_id, destination, dest_ip_id, max_hops, packet_size)
+                insert_row(insert)
             else:
                 hop_count = int(items[0])
                 hop_name = items[1]
                 hop_ip = items[2].strip('()')
+                hop_ip_id = insert_ip(hop_ip)
                 latency = float(items[3])
                 print(hop_count, hop_name, hop_ip, latency)
 
