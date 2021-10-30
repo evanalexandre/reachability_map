@@ -12,15 +12,26 @@ def insert_row(command):
     print(cursor.rowcount, "record inserted.")
 
 
+def select_one(select):
+    cursor = db_connect.db.cursor()
+    cursor.execute(select)
+    select_result = cursor.fetchone()
+    return(select_result)
+
+
 def insert_ip(ip):
     """Insert IP into table if it doesn't already exist. Returns IP ID"""
     # check if IP exists already
     select_frame = 'SELECT ipv4_id, ipv4_address FROM ipv4_addresses WHERE ipv4_address="{}"'
     select = select_frame.format(ip)
-    cursor = db_connect.db.cursor()
-    cursor.execute(select)
-    select_result = cursor.fetchone()
-    print(select_result)
+    select_result = select_one(select)
+    # if IP doesn't exist yet, insert it and get the ID
+    if select_result == None:
+        insert_frame = 'INSERT INTO ipv4_address (ipv4_address) VALUES "{}"'
+        insert = insert_frame.format(ip)
+        insert_row(insert)
+        select_result = select_one.result()
+        print(select_result)
 
 
 def parse_ping_sweep(result):
@@ -36,9 +47,7 @@ def parse_ping_sweep(result):
     insert_row(insert)
     select_frame = 'SELECT scan_id FROM scans WHERE start_time = "{}"'
     select = select_frame.format(start_time)
-    cursor = db_connect.db.cursor()
-    cursor.execute(select)
-    select_result = cursor.fetchone()
+    select_result = select_one(select)
     scan_id = select_result[0]
     scan = result['scan']
     for ip in scan:
