@@ -32,7 +32,9 @@ def insert_ip(ip):
         insert_row(insert)
         select_result = select_one(select)
         ip_id = select_result[0]
-        return(ip_id)
+    else:
+        ip_id = select_result[0]
+    return(ip_id)
 
 
 def parse_ping_sweep(result):
