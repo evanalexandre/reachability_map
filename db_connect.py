@@ -44,4 +44,6 @@ def select_all(table):
 if __name__ == '__main__':
     select_all('hosts')
     select_all('scans')
-    rebuild_schema()
+    select_all('traces')
+    select_all('hops')
+    select_all('ipv4_addresses')
