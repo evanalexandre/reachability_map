@@ -1,18 +1,29 @@
+import config
 import db_connect
+import logging
 import prefix_scraper
 import scan_scraper
 import trace
 
 
+logging.basicConfig(
+    filename=config.LOG_FILE,
+    level=logging.DEBUG,
+    format=config.LOG_FORMAT
+)
+
+
 def insert_row(command):
-    print(command)
+    logging.info(command)
     cursor = db_connect.db.cursor()
     cursor.execute(command)
     db_connect.db.commit()
-    print(cursor.rowcount, "record inserted.")
+    message = cursor.rowcount + "record inserted."
+    logging.info(message)
 
 
 def select_one(select):
+    logging.info(select)
     cursor = db_connect.db.cursor()
     cursor.execute(select)
     select_result = cursor.fetchone()

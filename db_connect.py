@@ -1,6 +1,13 @@
 import config
+import logging
 import mysql.connector
 
+
+logging.basicConfig(
+    filename=config.LOG_FILE,
+    level=logging.DEBUG,
+    format=config.LOG_FORMAT
+)
 
 db = mysql.connector.connect(
     host=config.DB_HOST,
@@ -15,7 +22,7 @@ def execute_sql(script):
         commands = f.read().split(';')[:-1]
         cursor = db.cursor()
         for command in commands:
-            print(command)
+            logging.info(command)
             cursor.execute(command)
 
 
@@ -35,6 +42,7 @@ def rebuild_schema():
 def select_all(table):
     cursor = db.cursor()
     select = 'SELECT * FROM {}'.format(table)
+    logging.info(select)
     cursor.execute(select)
     result = cursor.fetchall()
     for i in result:
