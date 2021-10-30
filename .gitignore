@@ -130,3 +130,6 @@ dmypy.json
 
 # config
 config.py
+
+# logs
+*.log
