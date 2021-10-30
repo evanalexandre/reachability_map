@@ -42,6 +42,7 @@ def parse_ping_sweep(result):
 def parse_trace(result):
     source_ip = scan_scraper.get_external_ip()
     lines = result.split('\r\n')
+    print(lines)
     for line in lines:
         print('Line: ', line)
         items = line.split()
