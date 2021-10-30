@@ -14,7 +14,13 @@ def insert_row(command):
 
 def insert_ip(ip):
     """Insert IP into table if it doesn't already exist. Returns IP ID"""
-
+    # check if IP exists already
+    select_frame = 'SELECT ipv4_id, ipv4_address FROM ipv4_addresses WHERE ipv4_address="{}"'
+    select = select_frame.format(ip)
+    cursor = db_connect.db.cursor()
+    cursor.execute(select)
+    select_result = cursor.fetchone()
+    print(select_result)
 
 
 def parse_ping_sweep(result):
@@ -67,5 +73,4 @@ def parse_trace(result):
 
 
 if __name__ == '__main__':
-    result = trace.traceroute('8.8.8.8')
-    parse_trace(result)
+    insert_ip('1.1.1.1')
