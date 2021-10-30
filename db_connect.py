@@ -42,6 +42,6 @@ def select_all(table):
 
 
 if __name__ == '__main__':
-    rebuild_schema()
     select_all('hosts')
     select_all('scans')
+    rebuild_schema()
