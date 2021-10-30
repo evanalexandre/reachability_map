@@ -80,7 +80,6 @@ def parse_trace(result):
     source_ip_id = insert_ip(source_ip)
     lines = result.split('\n')
     for line in lines:
-        print('Line: ', line)
         items = line.split()
         if len(items) > 1:
             if 'traceroute' in items:
@@ -99,7 +98,6 @@ def parse_trace(result):
                 hop_ip = items[2].strip('()')
                 hop_ip_id = insert_ip(hop_ip)
                 latency = float(items[3])
-                print(hop_count, hop_name, hop_ip, latency)
 
 
 if __name__ == '__main__':
