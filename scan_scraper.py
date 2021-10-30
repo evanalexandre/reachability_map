@@ -1,3 +1,4 @@
+import data_loader
 import nmap
 import prefix_scraper
 import time
@@ -18,6 +19,13 @@ def ping_sweep(network):
     result['start_time'] = start_time
     result['source_ip'] = source_ip
     return(result)
+
+
+def sweep_all_prefixes():
+    prefixes = prefix_scraper.get_prefixes(prefix_scraper.ASN)
+    for prefix in prefixes:
+        result = ping_sweep(prefix)
+        data_loader.parse_ping_sweep(result)
 
 
 if __name__ == '__main__':
