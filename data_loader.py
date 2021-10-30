@@ -30,7 +30,7 @@ def insert_ip(ip):
         insert_frame = 'INSERT INTO ipv4_addresses (ipv4_address) VALUES ("{}")'
         insert = insert_frame.format(ip)
         insert_row(insert)
-        select_result = select_one.result()
+        select_result = select_one(select)
         print(select_result)
 
 
