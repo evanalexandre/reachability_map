@@ -43,7 +43,7 @@ def parse_trace(result):
     source_ip = scan_scraper.get_external_ip()
     lines = result.split('\r\n')
     for line in lines:
-        print(line)
+        print('Line: ', line)
         items = line.split()
         if 'traceroute' in items:
             # parse first line
