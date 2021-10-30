@@ -40,7 +40,9 @@ def parse_ping_sweep(result):
 
 
 def parse_trace(result):
-    print(result)
+    lines = result.split('\r\n')
+    for line in lines:
+        print(line)
 
 
 if __name__ == '__main__':
