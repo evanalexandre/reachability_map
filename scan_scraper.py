@@ -39,6 +39,4 @@ def sweep_all_prefixes():
 
 
 if __name__ == '__main__':
-    prefixes = prefix_scraper.get_prefixes(prefix_scraper.ASN)
-    for prefix in prefixes:
-        ping_sweep(prefix)
+    sweep_all_prefixes()
